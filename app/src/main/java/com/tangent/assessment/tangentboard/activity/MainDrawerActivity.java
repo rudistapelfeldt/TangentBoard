@@ -2,6 +2,7 @@ package com.tangent.assessment.tangentboard.activity;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -30,7 +31,8 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class MainDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+                    ProfileFragment.OnFragmentInteractionListener{
 
     private static final String TAG = MainDrawerActivity.class.getSimpleName();
 
@@ -103,18 +105,11 @@ public class MainDrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
+
             mFragment = new ProfileFragment();
 
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_statistics) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 
@@ -188,5 +183,10 @@ public class MainDrawerActivity extends AppCompatActivity
         if (newFragment instanceof ProfileFragment){
             fragmentTransaction.replace(R.id.fragment_main, newFragment).commitAllowingStateLoss();
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

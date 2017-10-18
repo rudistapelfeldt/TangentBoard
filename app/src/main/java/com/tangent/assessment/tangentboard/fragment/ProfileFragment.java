@@ -1,15 +1,17 @@
 package com.tangent.assessment.tangentboard.fragment;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.tangent.assessment.tangentboard.R;
+import com.tangent.assessment.tangentboard.database.DatabaseHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +25,7 @@ public class ProfileFragment extends Fragment {
 
     private static final String TAG = ProfileFragment.class.getSimpleName();
 
-    private RecyclerView mRecyclerView;
+    private TextView mId, mFirstName, mLastName, mEmail, mUsername, mActive, mStaff, mSuperuser;
 
     private View mView;
 
@@ -76,10 +78,39 @@ public class ProfileFragment extends Fragment {
         if (mView == null){
             mView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-            //RECYCLERVIEW REFERENCE
-            mRecyclerView = (RecyclerView)mView.findViewById(R.id.profile_rv);
+            //TEXTVIEW REFERENCES
+            mId = (TextView)mView.findViewById(R.id.profile_id);
+            mLastName = (TextView)mView.findViewById(R.id.profile_lname);
+            mFirstName = (TextView)mView.findViewById(R.id.profile_fname);
+            mUsername = (TextView)mView.findViewById(R.id.profile_username);
+            mEmail = (TextView)mView.findViewById(R.id.profile_email);
+            mActive = (TextView)mView.findViewById(R.id.profile_active);
+            mStaff = (TextView)mView.findViewById(R.id.profile_staff);
+            mSuperuser = (TextView)mView.findViewById(R.id.profile_superuser);
+
+            //FILL FIELDS
+            fillFields();
         }
         return mView;
+    }
+
+    protected void fillFields(){
+
+        Cursor cursor = getActivity().getContentResolver().query(DatabaseHelper.LOGIN_CONTENT_URI, null, null, null, null);
+
+        if (cursor != null && cursor.getCount() > 0){
+            cursor.moveToFirst();
+            mId.setText(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID)));
+            mFirstName.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.FIRST_NAME)));
+            mLastName.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.LAST_NAME)));
+            mUsername.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.USERNAME)));
+            mEmail.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.EMAIL)));
+            mActive.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.IS_ACTIVE)));
+            mStaff.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.IS_STAFF)));
+            mSuperuser.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.IS_SUPERUSER)));
+
+            cursor.close();
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
