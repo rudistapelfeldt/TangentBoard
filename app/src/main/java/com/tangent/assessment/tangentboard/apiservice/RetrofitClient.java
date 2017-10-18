@@ -59,7 +59,7 @@ public class RetrofitClient {
 
         if (isAuthenticated) {
             //get token from database
-            Cursor cursor = activity.getContentResolver().query(DatabaseHelper.LOGIN_CONTENT_URI, null, null, null, null);
+            Cursor cursor = activity.getContentResolver().query(DatabaseHelper.TOKEN_CONTENT_URI, null, null, null, null);
 
             if (cursor != null && cursor.getCount() > 0){
                 cursor.moveToFirst();

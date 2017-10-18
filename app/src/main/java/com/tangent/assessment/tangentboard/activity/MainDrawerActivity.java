@@ -14,6 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.tangent.assessment.tangentboard.R;
+import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
+import com.tangent.assessment.tangentboard.model.UserData;
+
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MainDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -99,5 +106,28 @@ public class MainDrawerActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    protected void getMyDetails(){
+
+        Observable<UserData> observable = RetrofitClient.getInstance(this, true).getApiService().getMyDetails();
+        observable.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<UserData>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(UserData userData) {
+
+                    }
+                });
     }
 }

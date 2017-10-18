@@ -32,7 +32,7 @@ public class UserData {
     @SerializedName("last_name")
     private String mLastName;
 
-    
+
     public int getId() {
         return mId;
     }
