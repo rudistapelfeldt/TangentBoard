@@ -18,6 +18,8 @@ public class DataProvider extends ContentProvider {
 
     private static final int LOGIN = 204;
 
+    private static final int TOKEN = 304;
+
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     private Cursor returnCursor;
@@ -31,6 +33,12 @@ public class DataProvider extends ContentProvider {
                 DatabaseHelper.CONTENT_AUTHORITY,
                 DatabaseHelper.TB_LOGIN_DATA,
                 LOGIN
+        );
+
+        sUriMatcher.addURI(
+                DatabaseHelper.CONTENT_AUTHORITY,
+                DatabaseHelper.TB_TOKEN_DATA,
+                TOKEN
         );
     }
 
@@ -58,6 +66,20 @@ public class DataProvider extends ContentProvider {
                         );
                 if (getContext() != null) {
                     returnCursor.setNotificationUri(getContext().getContentResolver(), DatabaseHelper.LOGIN_CONTENT_URI);
+                }
+                break;
+            case TOKEN:
+                returnCursor = helper.getReadableDatabase()
+                        .query(DatabaseHelper.TB_TOKEN_DATA,
+                                projection,
+                                selection,
+                                selectionArgs,
+                                null,
+                                null,
+                                sortOrder
+                        );
+                if (getContext() != null) {
+                    returnCursor.setNotificationUri(getContext().getContentResolver(), DatabaseHelper.TOKEN_CONTENT_URI);
                 }
                 break;
         }
@@ -91,6 +113,16 @@ public class DataProvider extends ContentProvider {
                         getContext().getContentResolver().notifyChange(uri, null);
                     }
                     break;
+                case TOKEN:
+                    _id = (int) db.insert(DatabaseHelper.TB_TOKEN_DATA,
+                            null,
+                            values);
+                    if (_id > 0) returnUri = DatabaseHelper.buildTokenUri(_id);
+                    else throw new SQLException("Failed to insert row into " + uri);
+                    if (getContext() != null) {
+                        getContext().getContentResolver().notifyChange(uri, null);
+                    }
+                    break;
             }
 
             return returnUri;
@@ -109,6 +141,9 @@ public class DataProvider extends ContentProvider {
             switch (sUriMatcher.match(uri)) {
                 case LOGIN:
                     count = db.delete(DatabaseHelper.TB_LOGIN_DATA, selection, selectionArgs);
+                    break;
+                case TOKEN:
+                    count = db.delete(DatabaseHelper.TB_TOKEN_DATA, selection, selectionArgs);
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown URI " + uri);
@@ -134,6 +169,9 @@ public class DataProvider extends ContentProvider {
             switch (sUriMatcher.match(uri)) {
                 case LOGIN:
                     count = db.update(DatabaseHelper.TB_LOGIN_DATA, values, selection, selectionArgs);
+                    break;
+                case TOKEN:
+                    count = db.update(DatabaseHelper.TB_TOKEN_DATA, values, selection, selectionArgs);
                     break;
                 default:
                     throw new IllegalArgumentException("Uknown URI " + uri);

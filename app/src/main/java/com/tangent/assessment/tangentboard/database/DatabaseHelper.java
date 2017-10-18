@@ -16,11 +16,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String CONTENT_AUTHORITY = "com.tangent.assessment.tangentboard";
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 5;
 
     public static final String CONTENT_KEY = "content";
 
     public static final String TB_LOGIN_DATA = "tb_login_data";
+
+    public static final String TB_TOKEN_DATA = "tb_token_data";
 
     public static final String ID = "id";
 
@@ -47,15 +49,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String LOGIN_DATA_TABLE_CREATE =
             "CREATE TABLE " + TB_LOGIN_DATA + " (" +
-                    ID + " TEXT, " +
+                    ID + " INTEGER, " +
                     USERNAME + " TEXT, " +
-                    TOKEN + " TEXT, " +
                     FIRST_NAME + " TEXT, " +
                     EMAIL + " TEXT, " +
                     LAST_NAME + " TEXT, " +
                     IS_ACTIVE + " BOOLEAN, " +
                     IS_STAFF + " BOOLEAN, " +
                     IS_SUPERUSER + " BOOLEAN " +
+                    ")";
+
+    private static final String TOKEN_DATA_TABLE_CREATE =
+            "CREATE TABLE " + TB_TOKEN_DATA + " (" +
+                    TOKEN + " TEXT " +
                     ")";
 
     //uri strings
@@ -66,6 +72,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             .appendPath(TB_LOGIN_DATA)
             .build();
 
+    public static final Uri TOKEN_CONTENT_URI = new Uri.Builder()
+            .scheme(CONTENT_KEY)
+            .authority(CONTENT_AUTHORITY)
+            .appendPath(TB_TOKEN_DATA)
+            .build();
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -74,11 +86,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(LOGIN_DATA_TABLE_CREATE);
+        sqLiteDatabase.execSQL(TOKEN_DATA_TABLE_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TB_LOGIN_DATA);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TB_TOKEN_DATA);
         onCreate(sqLiteDatabase);
     }
 
@@ -92,6 +106,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static Uri buildLogInUri(int id) {
         return ContentUris.withAppendedId(LOGIN_CONTENT_URI, id);
+    }
+
+    public static Uri buildTokenUri(int id) {
+        return ContentUris.withAppendedId(TOKEN_CONTENT_URI, id);
     }
 
 }

@@ -1,9 +1,11 @@
 package com.tangent.assessment.tangentboard.activity;
 
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 
 import com.tangent.assessment.tangentboard.R;
 import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
+import com.tangent.assessment.tangentboard.database.DatabaseHelper;
 import com.tangent.assessment.tangentboard.model.LoginData;
 import com.tangent.assessment.tangentboard.utility.Constants;
 import com.tangent.assessment.tangentboard.utility.Util;
@@ -116,13 +119,31 @@ public class LoginActivity extends AppCompatActivity {
 
                             mEditor.putBoolean(Constants.IS_LOGGED_IN, true).apply();
 
-                            //SAVE TOKEN TO SHAREDPREFERENCES FOR LATER USE
-                            mEditor.putString(Constants.TOKEN, loginData.getToken()).apply();
+                            //IF A TOKEN RECORD EXISTS, REMOVE IT
+                            checkIfTokenExists();
+
+                            //INSERT TOKEN INTO SQLITE DB
+                            insertNewToken(loginData);
 
                             mProgressDialog.dismiss();
                         }
                     });
         }
+    }
+
+    protected void checkIfTokenExists(){
+        Cursor cursor = getContentResolver().query(DatabaseHelper.TOKEN_CONTENT_URI, null, null, null, null);
+
+        if (cursor != null &&cursor.getCount() > 0){
+            getContentResolver().delete(DatabaseHelper.TOKEN_CONTENT_URI, null, null);
+            cursor.close();
+        }
+    }
+
+    protected void insertNewToken(LoginData loginData){
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.TOKEN, loginData.getToken());
+        getContentResolver().insert(DatabaseHelper.TOKEN_CONTENT_URI, values);
     }
 
 }
