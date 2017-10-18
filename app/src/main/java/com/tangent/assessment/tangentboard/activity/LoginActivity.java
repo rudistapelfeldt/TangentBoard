@@ -116,6 +116,9 @@ public class LoginActivity extends AppCompatActivity {
 
                             mEditor.putBoolean(Constants.IS_LOGGED_IN, true).apply();
 
+                            //SAVE TOKEN TO SHAREDPREFERENCES FOR LATER USE
+                            mEditor.putString(Constants.TOKEN, loginData.getToken()).apply();
+
                             mProgressDialog.dismiss();
                         }
                     });
