@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (cursor != null &&cursor.getCount() > 0){
             getContentResolver().delete(DatabaseHelper.TOKEN_CONTENT_URI, null, null);
+            cursor.close();
         }
     }
 
