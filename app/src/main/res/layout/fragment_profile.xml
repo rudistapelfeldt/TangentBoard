@@ -46,7 +46,8 @@
                     android:text="@string/profile_id"
                     android:textColor="#232424"
                     android:textColorHint="#858585"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_weight="1"/>
 
                 <TextView
                     android:id="@+id/profile_id"
@@ -57,7 +58,8 @@
                     android:paddingStart="5dp"
                     android:textColor="#232424"
                     android:textColorHint="#858585"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -88,7 +90,8 @@
                         android:text="@string/profile_fname"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/profile_fname"
@@ -99,7 +102,8 @@
                         android:paddingStart="5dp"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                 </LinearLayout>
 
@@ -133,7 +137,8 @@
                         android:text="@string/profile_lname"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/profile_lname"
@@ -144,7 +149,8 @@
                         android:paddingStart="5dp"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                 </LinearLayout>
 
@@ -178,7 +184,8 @@
                         android:text="@string/profile_username"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/profile_username"
@@ -189,7 +196,8 @@
                         android:paddingStart="5dp"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                 </LinearLayout>
 
@@ -223,7 +231,8 @@
                         android:text="@string/profile_email"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/profile_email"
@@ -234,7 +243,8 @@
                         android:paddingStart="5dp"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                 </LinearLayout>
 
@@ -267,7 +277,8 @@
                         android:text="@string/profile_active"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/profile_active"
@@ -278,7 +289,8 @@
                         android:paddingStart="5dp"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                 </LinearLayout>
 
@@ -311,7 +323,8 @@
                         android:text="@string/profile_staff"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/profile_staff"
@@ -322,7 +335,8 @@
                         android:paddingStart="5dp"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                 </LinearLayout>
 
@@ -355,7 +369,8 @@
                         android:text="@string/profile_superuser"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                     <TextView
                         android:id="@+id/profile_superuser"
@@ -366,7 +381,8 @@
                         android:paddingStart="5dp"
                         android:textColor="#232424"
                         android:textColorHint="#858585"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_weight="1"/>
 
                 </LinearLayout>
 

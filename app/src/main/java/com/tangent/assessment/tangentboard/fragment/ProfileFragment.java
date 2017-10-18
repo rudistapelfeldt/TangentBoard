@@ -100,14 +100,16 @@ public class ProfileFragment extends Fragment {
 
         if (cursor != null && cursor.getCount() > 0){
             cursor.moveToFirst();
-            mId.setText(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID)));
+            mId.setText(String.valueOf(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.ID))));
             mFirstName.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.FIRST_NAME)));
             mLastName.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.LAST_NAME)));
             mUsername.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.USERNAME)));
             mEmail.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.EMAIL)));
-            mActive.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.IS_ACTIVE)));
-            mStaff.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.IS_STAFF)));
-            mSuperuser.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.IS_SUPERUSER)));
+
+            //CONVERT SQLITE BOOLEAN INT TO BOOLEAN
+            mActive.setText(String.valueOf(getBoolean(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.IS_ACTIVE)))));
+            mStaff.setText(String.valueOf(getBoolean(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.IS_STAFF)))));
+            mSuperuser.setText(String.valueOf(getBoolean(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.IS_SUPERUSER)))));
 
             cursor.close();
         }
@@ -118,6 +120,11 @@ public class ProfileFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    protected boolean getBoolean(int booleanInt){
+
+        return (booleanInt == 0) ? false : true;
     }
 
     @Override
