@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String TAG = "TEMPLATE";
+    private static final String TAG = RetrofitClient.class.getSimpleName();
     private static ApiService mApiService;
     private SharedPreferences mSharedPreferences;
     private Activity mActivity;
