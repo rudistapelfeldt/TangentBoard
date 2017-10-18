@@ -6,15 +6,14 @@
 package com.tangent.assessment.tangentboard.apiservice;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.tangent.assessment.tangentboard.database.DatabaseHelper;
 
 import java.io.IOException;
 import java.net.CookieHandler;
@@ -30,8 +29,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import za.co.developcode.fitnessapp.database.DatabaseHelper;
-import za.co.developcode.fitnessapp.utility.Constants;
 
 public class RetrofitClient {
 
@@ -103,7 +100,6 @@ public class RetrofitClient {
     }
 
     public OkHttpClient getAuthClient(){
-        Log.i("FITNESSAPP", "USING AUTH OKHTTP CLIENT");
         CookieHandler cookieHandler = new CookieManager(
                 new PersistentCookieStore(mActivity), CookiePolicy.ACCEPT_ALL);
 
