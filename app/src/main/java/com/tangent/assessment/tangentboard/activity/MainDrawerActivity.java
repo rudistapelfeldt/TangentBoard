@@ -161,16 +161,15 @@ public class MainDrawerActivity extends AppCompatActivity
         Log.i(TAG, "Inserting my user details");
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseHelper.ID, userData.getId());
-        values.put(DatabaseHelper.EMAIL, userData.getEmail());
-        values.put(DatabaseHelper.FIRST_NAME, userData.getFirstName());
-        values.put(DatabaseHelper.LAST_NAME, userData.getLastName());
         values.put(DatabaseHelper.USERNAME, userData.getUsername());
-        values.put(DatabaseHelper.IS_ACTIVE, userData.isActive());
-        values.put(DatabaseHelper.IS_STAFF, userData.isStaff());
         values.put(DatabaseHelper.IS_SUPERUSER, userData.isIsSuperuser());
-
-        getContentResolver().insert(DatabaseHelper.TOKEN_CONTENT_URI, values);
+        values.put(DatabaseHelper.IS_STAFF, userData.isStaff());
+        values.put(DatabaseHelper.ID, userData.getId());
+        values.put(DatabaseHelper.LAST_NAME, userData.getLastName());
+        values.put(DatabaseHelper.EMAIL, userData.getEmail());
+        values.put(DatabaseHelper.IS_ACTIVE, userData.isActive());
+        values.put(DatabaseHelper.FIRST_NAME, userData.getFirstName());
+        getContentResolver().insert(DatabaseHelper.LOGIN_CONTENT_URI, values);
 
     }
 }
