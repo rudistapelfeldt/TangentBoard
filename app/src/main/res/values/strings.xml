@@ -18,7 +18,14 @@
     <string name="error_incorrect_credentials">User credentials incorrect</string>
     <string name="correct_credentials">pravin.gordhan</string>
 
+    <!--Drawer menu strings -->
+    <string name="menu_profile">Profile</string>
+    <string name="menu_statistics">Statistics</string>
+
     <!-- ProgressDialog String -->
     <string name="progress_login">Logging in...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
