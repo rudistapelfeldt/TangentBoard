@@ -13,4 +13,12 @@
     <string name="prompt_password">Password</string>
     <string name="button_login">Login</string>
 
+    <!-- Toast Strings -->
+    <string name="error_no_credentials">Please enter username and password</string>
+    <string name="error_incorrect_credentials">User credentials incorrect</string>
+    <string name="correct_credentials">pravin.gordhan</string>
+
+    <!-- ProgressDialog String -->
+    <string name="progress_login">Logging in...</string>
+
 </resources>
