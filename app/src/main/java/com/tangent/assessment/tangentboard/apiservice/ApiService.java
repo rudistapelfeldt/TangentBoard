@@ -1,5 +1,7 @@
 package com.tangent.assessment.tangentboard.apiservice;
 
+import com.tangent.assessment.tangentboard.model.LoginData;
+
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Headers;
@@ -15,5 +17,6 @@ public interface ApiService {
     @Headers({"Content-Type: application/x-www-form-urlencoded"})
     @FormUrlEncoded
     @POST(Request.AUTH_TOKEN)
-    Observable getAuthToken(@Field("username") String username, @Field("password") String password);
+    Observable<LoginData> getAuthToken(@Field("username") String username, @Field("password") String password);
+    
 }

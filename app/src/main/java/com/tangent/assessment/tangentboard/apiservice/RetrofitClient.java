@@ -125,7 +125,7 @@ public class RetrofitClient {
         return client;
     }
 
-    public ApiService getUserService() {
+    public ApiService getApiService() {
         return mApiService;
     }
 }
