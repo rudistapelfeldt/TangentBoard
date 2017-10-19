@@ -23,6 +23,7 @@ import com.tangent.assessment.tangentboard.R;
 import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
 import com.tangent.assessment.tangentboard.database.DatabaseHelper;
 import com.tangent.assessment.tangentboard.fragment.ProfileFragment;
+import com.tangent.assessment.tangentboard.fragment.StatisticsFragment;
 import com.tangent.assessment.tangentboard.model.UserData;
 
 import rx.Observable;
@@ -32,7 +33,8 @@ import rx.schedulers.Schedulers;
 
 public class MainDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-                    ProfileFragment.OnFragmentInteractionListener{
+                    ProfileFragment.OnFragmentInteractionListener,
+                    StatisticsFragment.OnFragmentInteractionListener{
 
     private static final String TAG = MainDrawerActivity.class.getSimpleName();
 
@@ -110,6 +112,7 @@ public class MainDrawerActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_statistics) {
 
+            mFragment = new StatisticsFragment();
 
         }
 
@@ -181,6 +184,10 @@ public class MainDrawerActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
         if (newFragment instanceof ProfileFragment){
+            fragmentTransaction.replace(R.id.fragment_main, newFragment).commitAllowingStateLoss();
+        }
+
+        if (newFragment instanceof StatisticsFragment){
             fragmentTransaction.replace(R.id.fragment_main, newFragment).commitAllowingStateLoss();
         }
     }

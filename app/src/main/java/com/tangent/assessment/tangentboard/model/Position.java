@@ -19,4 +19,40 @@ public class Position {
 
     @SerializedName("sort")
     private int mSort;
+
+    public Position(){
+
+    }
+
+    public int getmId() {
+        return mId;
+    }
+
+    public void setmId(int mId) {
+        this.mId = mId;
+    }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
+    public String getmLevel() {
+        return mLevel;
+    }
+
+    public void setmLevel(String mLevel) {
+        this.mLevel = mLevel;
+    }
+
+    public int getmSort() {
+        return mSort;
+    }
+
+    public void setmSort(int mSort) {
+        this.mSort = mSort;
+    }
 }

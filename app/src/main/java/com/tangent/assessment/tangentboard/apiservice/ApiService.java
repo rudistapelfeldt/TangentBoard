@@ -1,5 +1,6 @@
 package com.tangent.assessment.tangentboard.apiservice;
 
+import com.tangent.assessment.tangentboard.model.EmployeeData;
 import com.tangent.assessment.tangentboard.model.LoginData;
 import com.tangent.assessment.tangentboard.model.UserData;
 
@@ -24,4 +25,8 @@ public interface ApiService {
     @Headers({"Content-Type: application/json"})
     @GET(Request.USER_DETAILS)
     Observable<UserData> getMyDetails();
+
+    @Headers({"Content-Type: application/json"})
+    @GET(Request.EMPLOYEE_DETAIL)
+    Observable<EmployeeData> getEmployees();
 }

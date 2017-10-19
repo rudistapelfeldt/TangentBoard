@@ -4,15 +4,25 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.tangent.assessment.tangentboard.R;
+import com.tangent.assessment.tangentboard.adapter.EmployeeRecyclerViewAdapter;
+import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
 import com.tangent.assessment.tangentboard.model.Employee;
+import com.tangent.assessment.tangentboard.model.EmployeeData;
+import com.tangent.assessment.tangentboard.model.StatisticsData;
 
 import java.util.ArrayList;
+
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +37,8 @@ public class StatisticsFragment extends Fragment {
     private static final String TAG = StatisticsFragment.class.getSimpleName();
 
     private RecyclerView mRecyclerView;
+
+    private EmployeeRecyclerViewAdapter mAdapter;
 
     private View mView;
 
@@ -83,6 +95,10 @@ public class StatisticsFragment extends Fragment {
 
             //RECYCLERVIEW REFERENCE
             mRecyclerView = (RecyclerView)mView.findViewById(R.id.stats_rv);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+            //SET RECYCLERVIEW DATA LIST
+            setEmployeeRecyclerView();
 
 
         }
@@ -126,5 +142,46 @@ public class StatisticsFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    protected void setEmployeeRecyclerView(){
+
+        Observable<EmployeeData> observable = RetrofitClient.getInstance(getActivity(), true).getApiService().getEmployees();
+
+        observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<EmployeeData>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(EmployeeData employeeData) {
+                        ArrayList<StatisticsData> dataList = employeeData.getmData();
+
+                        for (StatisticsData data : dataList){
+                            Employee employee = new Employee();
+                            employee.setmId(data.getmUser().getId());
+                            employee.setmFname(data.getmUser().getFirstName());
+                            employee.setmLname(data.getmUser().getLastName());
+                            employee.setmPosition(data.getmPosition().getmName());
+                            employee.setmEmail(data.getmEmail());
+                            employee.setmAge(data.getmAge());
+
+                            //ADD EMPLOYEE OBJECT TO LIST FOR USE IN THE RECYCLERVIEW ADAPTER
+                            mEmployeeList.add(employee);
+                        }
+
+                        mAdapter = new EmployeeRecyclerViewAdapter(getActivity(), mEmployeeList);
+
+                        //SET RECYCLERVIEW ADAPTER
+                        mRecyclerView.setAdapter(mAdapter);
+                    }
+                });
     }
 }
