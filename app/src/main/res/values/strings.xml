@@ -46,6 +46,36 @@
     <string name="stats_start_date">Start date</string>
     <string name="stats_user">User:</string>
     <string name="stats_email">Email contains:</string>
+    <string name="stats_query">Query Database</string>
+
+    <string-array name="race_array">
+        <item>Black African</item>
+        <item>White</item>
+        <item>Coloured</item>
+        <item>Indian or Asian</item>
+        <item>None Dominant</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+    <string-array name="position_array">
+        <item>Front-end Developer</item>
+        <item>Back-end Developer</item>
+        <item>Project Manager</item>
+        <item>Indian or Asian</item>
+        <item>None Dominant</item>
+    </string-array>
+
+    <string-array name="date_array">
+        <item>Today</item>
+        <item>Past 7 Days</item>
+        <item>This Month</item>
+        <item>This Year</item>
+        <item>Yesterday</item>
+    </string-array>
 
     <!-- Employee row strings -->
     <string name="emp_id">Id</string>
