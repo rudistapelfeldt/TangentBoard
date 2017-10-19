@@ -38,4 +38,7 @@
     <string name="profile_staff">Staff:</string>
     <string name="profile_superuser">Superuser:</string>
 
+    <!-- Statistics Strings -->
+    <string name="stats_search">Search:</string>
+
 </resources>
