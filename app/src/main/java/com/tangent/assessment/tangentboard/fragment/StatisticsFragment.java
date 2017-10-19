@@ -10,6 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.tangent.assessment.tangentboard.R;
 import com.tangent.assessment.tangentboard.adapter.EmployeeRecyclerViewAdapter;
@@ -18,7 +23,9 @@ import com.tangent.assessment.tangentboard.model.Employee;
 import com.tangent.assessment.tangentboard.model.StatisticsData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -33,7 +40,7 @@ import rx.schedulers.Schedulers;
  * Use the {@link StatisticsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StatisticsFragment extends Fragment {
+public class StatisticsFragment extends Fragment implements AdapterView.OnItemClickListener{
 
     private static final String TAG = StatisticsFragment.class.getSimpleName();
 
@@ -43,7 +50,15 @@ public class StatisticsFragment extends Fragment {
 
     private View mView;
 
+    private Spinner mGender, mRace, mBirthDate, mStartDate, mPosition;
+
+    private ArrayAdapter<String> mGenderArray, mRaceArray, mBirthDateArray, mStartDateArray, mPositionArray;
+
     private ArrayList<Employee> mEmployeeList = new ArrayList<>();
+
+    private Button mQuery;
+
+    private EditText mEmailContains, mUser;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -98,9 +113,49 @@ public class StatisticsFragment extends Fragment {
             mRecyclerView = (RecyclerView)mView.findViewById(R.id.stats_rv);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-            //SET RECYCLERVIEW DATA LIST
-            setEmployeeRecyclerView();
+            //EDITTEXT REFERENCES
+            mEmailContains = (EditText)mView.findViewById(R.id.stats_email);
+            mUser = (EditText)mView.findViewById(R.id.stats_user);
 
+            //BUTTON REFERENCE
+            mQuery = (Button)mView.findViewById(R.id.stats_query);
+
+            //SET BUTTON ONCLICKLISTENER
+            mQuery.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //SET RECYCLERVIEW DATA LIST
+                    setEmployeeRecyclerView();
+                }
+            });
+
+            //SPINNER REFERENCES
+            mGender = (Spinner)mView.findViewById(R.id.stats_gender);
+            mPosition = (Spinner)mView.findViewById(R.id.stats_position);
+            mBirthDate = (Spinner)mView.findViewById(R.id.stats_birthdate);
+            mStartDate = (Spinner)mView.findViewById(R.id.stats_start_date);
+            mRace = (Spinner)mView.findViewById(R.id.stats_race);
+
+            //ARRAYADAPTER REFERENCES
+            mGenderArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.gender_array));
+            mPositionArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.position_array));
+            mBirthDateArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.date_array));
+            mStartDateArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.date_array));
+            mRaceArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.race_array));
+
+            //SET SPINNER ADAPTERS
+            mGender.setAdapter(mGenderArray);
+            mPosition.setAdapter(mPositionArray);
+            mBirthDate.setAdapter(mBirthDateArray);
+            mStartDate.setAdapter(mStartDateArray);
+            mRace.setAdapter(mRaceArray);
+
+            //SET SPINNER ONCLICKLISTENERS
+            //mGender.setOnItemClickListener(this);
+            //mPosition.setOnItemClickListener(this);
+            //mBirthDate.setOnItemClickListener(this);
+            //mStartDate.setOnItemClickListener(this);
+            //mRace.setOnItemClickListener(this);
 
         }
         return mView;
@@ -130,6 +185,29 @@ public class StatisticsFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        int id = view.getId();
+
+        switch(id){
+            case R.id.stats_gender:
+
+                break;
+            case R.id.stats_position:
+
+                break;
+            case R.id.stats_race:
+
+                break;
+            case R.id.stats_birthdate:
+
+                break;
+            case R.id.stats_start_date:
+
+                break;
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -147,7 +225,117 @@ public class StatisticsFragment extends Fragment {
 
     protected void setEmployeeRecyclerView(){
 
-        Observable<List<StatisticsData>> observable = RetrofitClient.getInstance(getActivity(), true).getApiService().getEmployees();
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        if(mGender.isSelected()){
+            int select = mGender.getSelectedItemPosition();
+
+            switch(select){
+                case 0:
+                    map.put("gender", "F");
+                    break;
+                case 1:
+                    map.put("gender", "M");
+                    break;
+            }
+        }
+
+        if(mRace.isSelected()){
+            int select = mRace.getSelectedItemPosition();
+
+            switch(select){
+                case 0:
+                    map.put("race", "B");
+                    break;
+                case 1:
+                    map.put("race", "W");
+                    break;
+                case 2:
+                    map.put("race", "C");
+                    break;
+                case 3:
+                    map.put("race", "I");
+                    break;
+                case 4:
+                    map.put("race", "N");
+                    break;
+            }
+        }
+
+        if(mPosition.isSelected()){
+            int select = mPosition.getSelectedItemPosition();
+
+            switch(select){
+                case 0:
+                    map.put("position", 1);
+                    break;
+                case 1:
+                    map.put("position", 2);
+                    break;
+                case 2:
+                    map.put("position", 3);
+                    break;
+
+            }
+        }
+
+        if(mBirthDate.isSelected()){
+            int select = mBirthDate.getSelectedItemPosition();
+
+            switch(select){
+                case 0:
+                    map.put("birth_date_range", 1);
+                    break;
+                case 1:
+                    map.put("birth_date_range", 2);
+                    break;
+                case 2:
+                    map.put("birth_date_range", 3);
+                    break;
+                case 3:
+                    map.put("birth_date_range", 4);
+                    break;
+                case 4:
+                    map.put("birth_date_range", 5);
+                    break;
+
+            }
+        }
+
+        if(mStartDate.isSelected()){
+            int select = mStartDate.getSelectedItemPosition();
+
+            switch(select){
+                case 0:
+                    map.put("start_date_range", 1);
+                    break;
+                case 1:
+                    map.put("start_date_range", 2);
+                    break;
+                case 2:
+                    map.put("start_date_range", 3);
+                    break;
+                case 3:
+                    map.put("start_date_range", 4);
+                    break;
+                case 4:
+                    map.put("start_date_range", 5);
+                    break;
+
+            }
+        }
+
+        if (!mEmailContains.getText().toString().isEmpty()){
+            map.put("email_contains", mEmailContains.getText().toString());
+        }
+
+        if (!mUser.getText().toString().isEmpty()){
+            map.put("user", Integer.parseInt(mUser.getText().toString()));
+        }
+
+
+
+        Observable<List<StatisticsData>> observable = RetrofitClient.getInstance(getActivity(), true).getApiService().getEmployeesMap(map);
 
         observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<StatisticsData>>() {

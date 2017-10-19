@@ -5,6 +5,7 @@ import com.tangent.assessment.tangentboard.model.StatisticsData;
 import com.tangent.assessment.tangentboard.model.UserData;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -29,6 +30,18 @@ public interface ApiService {
     Observable<UserData> getMyDetails();
 
     @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
     @GET(Request.EMPLOYEE_DETAIL)
-    Observable<List<StatisticsData>> getEmployees();
+    Observable<List<StatisticsData>> getEmployees(@Field("race") String race,
+                                                  @Field("position") String position,
+                                                  @Field("gender") String gender,
+                                                  @Field("start_date_range") int startDateRange,
+                                                  @Field("birth_date_range") int birthDateRange,
+                                                  @Field("user") int userId,
+                                                  @Field("email_contains") String emailContains);
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @FormUrlEncoded
+    @GET(Request.EMPLOYEE_DETAIL)
+    Observable<List<StatisticsData>> getEmployeesMap(Map<String,Object> parameters);
 }

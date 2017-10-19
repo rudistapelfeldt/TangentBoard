@@ -119,7 +119,8 @@
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:inputType="text" />
+                    android:maxLines="1"
+                    android:inputType="number" />
 
             </LinearLayout>
         </LinearLayout>
@@ -152,6 +153,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/app_margin_start"
                     android:layout_weight="0"
+                    android:maxLines="1"
                     android:inputType="text" />
 
             </LinearLayout>
