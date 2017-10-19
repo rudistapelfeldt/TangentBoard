@@ -139,8 +139,8 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             //ARRAYADAPTER REFERENCES
             mGenderArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.gender_array));
             mPositionArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.position_array));
-            mBirthDateArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.date_array));
-            mStartDateArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.date_array));
+            mBirthDateArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.birth_date_array));
+            mStartDateArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.start_date_array));
             mRaceArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.race_array));
 
             //SET SPINNER ADAPTERS
@@ -227,7 +227,7 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
 
         Map<String, Object> map = new HashMap<String, Object>();
 
-        if(mGender.isSelected()){
+        if(mGender.getSelectedItemPosition() != 0){
             int select = mGender.getSelectedItemPosition();
 
             switch(select){
@@ -240,7 +240,7 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             }
         }
 
-        if(mRace.isSelected()){
+        if(mRace.getSelectedItemPosition() != 0){
             int select = mRace.getSelectedItemPosition();
 
             switch(select){
@@ -262,7 +262,7 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             }
         }
 
-        if(mPosition.isSelected()){
+        if(mPosition.getSelectedItemPosition() != 0){
             int select = mPosition.getSelectedItemPosition();
 
             switch(select){
@@ -279,7 +279,7 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             }
         }
 
-        if(mBirthDate.isSelected()){
+        if(mBirthDate.getSelectedItemPosition() != 0){
             int select = mBirthDate.getSelectedItemPosition();
 
             switch(select){
@@ -302,7 +302,7 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             }
         }
 
-        if(mStartDate.isSelected()){
+        if(mStartDate.getSelectedItemPosition() != 0){
             int select = mStartDate.getSelectedItemPosition();
 
             switch(select){
@@ -351,7 +351,9 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
 
                     @Override
                     public void onNext(List<StatisticsData> employeeData) {
-
+                        if (!mEmployeeList.isEmpty()){
+                            mEmployeeList.clear();
+                        }
                         for (StatisticsData data : employeeData){
                             Employee employee = new Employee();
                             employee.setmId(data.getmUser().getId());
@@ -369,7 +371,20 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
 
                         //SET RECYCLERVIEW ADAPTER
                         mRecyclerView.setAdapter(mAdapter);
+
+                        //CLEAR VIEWS
+                        clearViews();
                     }
                 });
+    }
+
+    protected void clearViews(){
+        mUser.setText("");
+        mEmailContains.setText("");
+        mGender.setSelection(0);
+        mPosition.setSelection(0);
+        mRace.setSelection(0);
+        mBirthDate.setSelection(0);
+        mStartDate.setSelection(0);
     }
 }

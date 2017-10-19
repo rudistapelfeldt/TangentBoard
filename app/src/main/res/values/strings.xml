@@ -49,6 +49,7 @@
     <string name="stats_query">Query Database</string>
 
     <string-array name="race_array">
+        <item>Race</item>
         <item>Black African</item>
         <item>White</item>
         <item>Coloured</item>
@@ -57,17 +58,20 @@
     </string-array>
 
     <string-array name="gender_array">
+        <item>Gender</item>
         <item>Female</item>
         <item>Male</item>
     </string-array>
 
     <string-array name="position_array">
+        <item>Position</item>
         <item>Front-end Developer</item>
         <item>Back-end Developer</item>
         <item>Project Manager</item>
     </string-array>
 
-    <string-array name="date_array">
+    <string-array name="birth_date_array">
+        <item>Birth Date</item>
         <item>Today</item>
         <item>Past 7 Days</item>
         <item>This Month</item>
@@ -75,6 +79,14 @@
         <item>Yesterday</item>
     </string-array>
 
+    <string-array name="start_date_array">
+        <item>Start Date</item>
+        <item>Today</item>
+        <item>Past 7 Days</item>
+        <item>This Month</item>
+        <item>This Year</item>
+        <item>Yesterday</item>
+    </string-array>
     <!-- Employee row strings -->
     <string name="emp_id">Id</string>
     <string name="emp_fname">First name</string>
