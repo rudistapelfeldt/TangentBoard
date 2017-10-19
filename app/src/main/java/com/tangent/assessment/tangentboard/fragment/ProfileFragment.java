@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,10 +108,16 @@ public class ProfileFragment extends Fragment {
             mEmail.setText(cursor.getString(cursor.getColumnIndex(DatabaseHelper.EMAIL)));
 
             //CONVERT SQLITE BOOLEAN INT TO BOOLEAN
-            mActive.setText(String.valueOf(getBoolean(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.IS_ACTIVE)))));
-            mStaff.setText(String.valueOf(getBoolean(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.IS_STAFF)))));
-            mSuperuser.setText(String.valueOf(getBoolean(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.IS_SUPERUSER)))));
-
+            try {
+                mActive.setText(String.valueOf(getBoolean(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.IS_ACTIVE)))));
+                mStaff.setText(String.valueOf(getBoolean(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.IS_STAFF)))));
+                mSuperuser.setText(String.valueOf(getBoolean(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.IS_SUPERUSER)))));
+            }catch(Exception e){
+                Log.e(TAG, e.getMessage());
+                mActive.setText("");
+                mStaff.setText("");
+                mSuperuser.setText("");
+            }
             cursor.close();
         }
     }
@@ -122,9 +129,15 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    protected boolean getBoolean(int booleanInt){
+    public boolean getBoolean(int booleanInt) throws Exception{
 
-        return (booleanInt == 0) ? false : true;
+        if (booleanInt == 0){
+            return false;
+        }else if (booleanInt == 1){
+            return true;
+        }else{
+            throw new Exception("Invalid boolean integer");
+        }
     }
 
     @Override
