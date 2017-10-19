@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,10 @@ import com.tangent.assessment.tangentboard.R;
 import com.tangent.assessment.tangentboard.adapter.EmployeeRecyclerViewAdapter;
 import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
 import com.tangent.assessment.tangentboard.model.Employee;
-import com.tangent.assessment.tangentboard.model.EmployeeData;
 import com.tangent.assessment.tangentboard.model.StatisticsData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -146,10 +147,10 @@ public class StatisticsFragment extends Fragment {
 
     protected void setEmployeeRecyclerView(){
 
-        Observable<EmployeeData> observable = RetrofitClient.getInstance(getActivity(), true).getApiService().getEmployees();
+        Observable<List<StatisticsData>> observable = RetrofitClient.getInstance(getActivity(), true).getApiService().getEmployees();
 
         observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<EmployeeData>() {
+                .subscribe(new Subscriber<List<StatisticsData>>() {
                     @Override
                     public void onCompleted() {
 
@@ -157,14 +158,13 @@ public class StatisticsFragment extends Fragment {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.e(TAG, e.getMessage());
                     }
 
                     @Override
-                    public void onNext(EmployeeData employeeData) {
-                        ArrayList<StatisticsData> dataList = employeeData.getmData();
+                    public void onNext(List<StatisticsData> employeeData) {
 
-                        for (StatisticsData data : dataList){
+                        for (StatisticsData data : employeeData){
                             Employee employee = new Employee();
                             employee.setmId(data.getmUser().getId());
                             employee.setmFname(data.getmUser().getFirstName());

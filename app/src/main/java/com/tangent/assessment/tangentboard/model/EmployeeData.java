@@ -1,5 +1,7 @@
 package com.tangent.assessment.tangentboard.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 
 public class EmployeeData {
 
+    @SerializedName("")
     private ArrayList<StatisticsData> mData;
 
     public EmployeeData(ArrayList<StatisticsData> mData) {

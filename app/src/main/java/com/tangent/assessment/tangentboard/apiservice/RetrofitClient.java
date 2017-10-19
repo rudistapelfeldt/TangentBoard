@@ -89,7 +89,7 @@ public class RetrofitClient {
         cookieJar =
                 new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(mActivity));
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(5, TimeUnit.MINUTES)
                 .readTimeout(5, TimeUnit.MINUTES)
@@ -115,7 +115,7 @@ public class RetrofitClient {
                     public Response intercept(Chain chain) throws IOException {
                         okhttp3.Request original = chain.request();
                         okhttp3.Request request = original.newBuilder()
-                                .addHeader("AUTHORIZATION", "TOKEN " + mToken)
+                                .addHeader("AUTHORIZATION", "Token " + mToken)
                                 .build();
                         return chain.proceed(request);
                     }

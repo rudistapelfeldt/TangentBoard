@@ -1,8 +1,10 @@
 package com.tangent.assessment.tangentboard.apiservice;
 
-import com.tangent.assessment.tangentboard.model.EmployeeData;
 import com.tangent.assessment.tangentboard.model.LoginData;
+import com.tangent.assessment.tangentboard.model.StatisticsData;
 import com.tangent.assessment.tangentboard.model.UserData;
+
+import java.util.List;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -26,7 +28,7 @@ public interface ApiService {
     @GET(Request.USER_DETAILS)
     Observable<UserData> getMyDetails();
 
-    @Headers({"Content-Type: application/json"})
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
     @GET(Request.EMPLOYEE_DETAIL)
-    Observable<EmployeeData> getEmployees();
+    Observable<List<StatisticsData>> getEmployees();
 }

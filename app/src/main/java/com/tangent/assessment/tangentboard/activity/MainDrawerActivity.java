@@ -158,7 +158,7 @@ public class MainDrawerActivity extends AppCompatActivity
         Cursor cursor = getContentResolver().query(DatabaseHelper.LOGIN_CONTENT_URI, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0){
-            getContentResolver().delete(DatabaseHelper.TOKEN_CONTENT_URI, null, null);
+            getContentResolver().delete(DatabaseHelper.LOGIN_CONTENT_URI, null, null);
             cursor.close();
         }
     }
