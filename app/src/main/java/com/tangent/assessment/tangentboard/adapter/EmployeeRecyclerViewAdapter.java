@@ -2,6 +2,7 @@ package com.tangent.assessment.tangentboard.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,11 +42,23 @@ public class EmployeeRecyclerViewAdapter extends RecyclerView.Adapter<EmployeeRe
     @Override
     public void onBindViewHolder(EmployeeViewHolder holder, int position) {
 
+        try{
+            holder.mId.setText(String.valueOf(mItems.get(position).getmId()));
+            holder.mFname.setText(mItems.get(position).getmFname());
+            holder.mLname.setText(mItems.get(position).getmLname());
+            holder.mPosition.setText(mItems.get(position).getmPosition());
+            holder.mEmail.setText(mItems.get(position).getmEmail());
+            holder.mAge.setText(String.valueOf(mItems.get(position).getmAge()));
+
+        }catch(Exception e){
+            Log.e(TAG, e.getMessage());
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mItems.size();
     }
 
     class EmployeeViewHolder extends RecyclerView.ViewHolder{
