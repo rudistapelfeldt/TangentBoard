@@ -7,7 +7,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="120dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_profile_banner" />
 
@@ -25,35 +25,149 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/app_padding_bottom"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@android:color/transparent"
-                android:paddingStart="5dp"
-                android:text="@string/stats_search"
-                android:textColor="#232424"
-                android:textColorHint="#858585"
-                android:textSize="15sp"
-                android:layout_weight="1"/>
+                android:layout_marginBottom="@dimen/app_padding_bottom"
+                android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/stats_race"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:paddingStart="5dp"
+                    android:text="@string/stats_search"
+                    android:textColor="#232424"
+                    android:textColorHint="#858585"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/stats_race"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#232424"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/stats_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#232424"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/stats_start_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#232424"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="#232424"
-                android:textSize="15sp" />
+                android:orientation="horizontal"
+                android:weightSum="5">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.55" />
+
+                <Spinner
+                    android:id="@+id/stats_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:textColor="#232424"
+                    android:textSize="15sp" />
+
+                <Spinner
+                    android:id="@+id/stats_birthdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:textColor="#232424"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1.2"
+                    android:backgroundTint="@android:color/transparent"
+                    android:gravity="top"
+                    android:paddingStart="5dp"
+                    android:text="@string/stats_user"
+                    android:textAlignment="center"
+                    android:textColor="#232424"
+                    android:textColorHint="#858585"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/stats_user"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:inputType="text" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@android:color/transparent"
+                    android:gravity="top"
+                    android:paddingStart="5dp"
+                    android:text="@string/stats_email"
+                    android:textColor="#232424"
+                    android:textColorHint="#858585"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/stats_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_marginStart="@dimen/app_margin_start"
+                    android:inputType="text" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/stats_rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/scroll_view_margin_top"/>
 
     </LinearLayout>
 </LinearLayout>

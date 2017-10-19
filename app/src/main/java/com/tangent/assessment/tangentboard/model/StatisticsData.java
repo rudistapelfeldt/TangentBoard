@@ -57,7 +57,7 @@ public class StatisticsData {
     }
 
     public StatisticsData(){
-        
+
     }
 
     public User getmUser() {

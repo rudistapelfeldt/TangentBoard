@@ -40,5 +40,20 @@
 
     <!-- Statistics Strings -->
     <string name="stats_search">Search:</string>
+    <string name="stats_gender">Gender</string>
+    <string name="stats_position">Position</string>
+    <string name="stats_race">Race</string>
+    <string name="stats_start_date">Start date</string>
+    <string name="stats_user">User:</string>
+    <string name="stats_email">Email contains:</string>
+
+    <!-- Employee row strings -->
+    <string name="emp_id">Id</string>
+    <string name="emp_fname">First name</string>
+    <string name="emp_lname">Last name</string>
+    <string name="emp_position">Position</string>
+    <string name="emp_email">Email</string>
+    <string name="emp_age">Age</string>
+
 
 </resources>
