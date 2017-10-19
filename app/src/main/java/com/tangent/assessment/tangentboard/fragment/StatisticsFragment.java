@@ -231,10 +231,10 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             int select = mGender.getSelectedItemPosition();
 
             switch(select){
-                case 0:
+                case 1:
                     map.put("gender", "F");
                     break;
-                case 1:
+                case 2:
                     map.put("gender", "M");
                     break;
             }
@@ -244,19 +244,19 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             int select = mRace.getSelectedItemPosition();
 
             switch(select){
-                case 0:
+                case 1:
                     map.put("race", "B");
                     break;
-                case 1:
+                case 2:
                     map.put("race", "W");
                     break;
-                case 2:
+                case 3:
                     map.put("race", "C");
                     break;
-                case 3:
+                case 4:
                     map.put("race", "I");
                     break;
-                case 4:
+                case 5:
                     map.put("race", "N");
                     break;
             }
@@ -266,13 +266,13 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             int select = mPosition.getSelectedItemPosition();
 
             switch(select){
-                case 0:
+                case 1:
                     map.put("position", 1);
                     break;
-                case 1:
+                case 2:
                     map.put("position", 2);
                     break;
-                case 2:
+                case 3:
                     map.put("position", 3);
                     break;
 
@@ -283,19 +283,19 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             int select = mBirthDate.getSelectedItemPosition();
 
             switch(select){
-                case 0:
+                case 1:
                     map.put("birth_date_range", 1);
                     break;
-                case 1:
+                case 2:
                     map.put("birth_date_range", 2);
                     break;
-                case 2:
+                case 3:
                     map.put("birth_date_range", 3);
                     break;
-                case 3:
+                case 4:
                     map.put("birth_date_range", 4);
                     break;
-                case 4:
+                case 5:
                     map.put("birth_date_range", 5);
                     break;
 
@@ -306,19 +306,19 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             int select = mStartDate.getSelectedItemPosition();
 
             switch(select){
-                case 0:
+                case 1:
                     map.put("start_date_range", 1);
                     break;
-                case 1:
+                case 2:
                     map.put("start_date_range", 2);
                     break;
-                case 2:
+                case 3:
                     map.put("start_date_range", 3);
                     break;
-                case 3:
+                case 4:
                     map.put("start_date_range", 4);
                     break;
-                case 4:
+                case 5:
                     map.put("start_date_range", 5);
                     break;
 
