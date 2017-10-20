@@ -131,6 +131,8 @@ public class StatisticsFragment extends Fragment {
             mNoOfMEmpMap.put("gender", "M");
             getEmployees(mNoOfMEmpMap, mNoOfMEmp);
 
+            getEmployees(null, mNoOfEmp);
+
         }
         return mView;
     }

@@ -21,6 +21,7 @@
     <!--Drawer menu strings -->
     <string name="menu_profile">Profile</string>
     <string name="menu_statistics">Statistics</string>
+    <string name="menu_home">Home</string>
 
     <!-- ProgressDialog String -->
     <string name="progress_login">Logging in...</string>
