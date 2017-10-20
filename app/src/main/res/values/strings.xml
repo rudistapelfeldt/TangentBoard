@@ -38,6 +38,9 @@
     <string name="profile_active">Active:</string>
     <string name="profile_staff">Staff:</string>
     <string name="profile_superuser">Superuser:</string>
+    <string name="profile_emp_info">Employment Information:</string>
+    <string name="profile_emp_position">Position:</string>
+    <string name="profile_emp_level">Level:</string>
 
     <!-- Admin Strings -->
     <string name="admin_search">Search:</string>

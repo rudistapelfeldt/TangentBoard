@@ -131,7 +131,7 @@ public class StatisticsFragment extends Fragment {
             mNoOfMEmpMap.put("gender", "M");
             getEmployees(mNoOfMEmpMap, mNoOfMEmp);
 
-            getEmployees(null, mNoOfEmp);
+            getEmployees(mNoOfEmp);
 
         }
         return mView;
@@ -181,6 +181,30 @@ public class StatisticsFragment extends Fragment {
     protected void getEmployees(Map<String, Object> map, final TextView textView){
 
         Observable<List<StatisticsData>> observable = RetrofitClient.getInstance(getActivity(), true).getApiService().getEmployeesMap(map);
+
+        observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<List<StatisticsData>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(List<StatisticsData> employeeData) {
+                        Log.i(TAG, "got data");
+                        textView.setText(String.valueOf(employeeData.size()));
+                    }
+                });
+    }
+
+    protected void getEmployees(final TextView textView){
+
+        Observable<List<StatisticsData>> observable = RetrofitClient.getInstance(getActivity(), true).getApiService().getEmployees();
 
         observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<StatisticsData>>() {

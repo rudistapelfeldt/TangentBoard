@@ -30,15 +30,9 @@ public interface ApiService {
     @GET(Request.USER_DETAILS)
     Observable<UserData> getMyDetails();
 
-    /*@Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
     @GET(Request.EMPLOYEE_DETAIL)
-    Observable<List<StatisticsData>> getEmployees(@Field("race") String race,
-                                                  @Field("position") String position,
-                                                  @Field("gender") String gender,
-                                                  @Field("start_date_range") int startDateRange,
-                                                  @Field("birth_date_range") int birthDateRange,
-                                                  @Field("user") int userId,
-                                                  @Field("email_contains") String emailContains);*/
+    Observable<List<StatisticsData>> getEmployees();
 
     @Headers({"Content-Type: application/x-www-form-urlencoded"})
     @GET(Request.EMPLOYEE_DETAIL)
