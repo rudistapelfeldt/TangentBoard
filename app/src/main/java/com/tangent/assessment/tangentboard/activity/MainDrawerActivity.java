@@ -4,9 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -17,11 +15,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.tangent.assessment.tangentboard.R;
 import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
 import com.tangent.assessment.tangentboard.database.DatabaseHelper;
+import com.tangent.assessment.tangentboard.fragment.AdminFragment;
 import com.tangent.assessment.tangentboard.fragment.ProfileFragment;
 import com.tangent.assessment.tangentboard.model.UserData;
 
@@ -32,7 +30,8 @@ import rx.schedulers.Schedulers;
 
 public class MainDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-                    ProfileFragment.OnFragmentInteractionListener{
+                    ProfileFragment.OnFragmentInteractionListener,
+                    AdminFragment.OnFragmentInteractionListener{
 
     private static final String TAG = MainDrawerActivity.class.getSimpleName();
 
@@ -45,16 +44,12 @@ public class MainDrawerActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //GET LOGGED IN USER'S DETAILS AND SAVE TO SQLITE DATABASE
         getMyDetails();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        //LOAD ADMINFRAGMENT AS HOME SCREEN
+        mFragment = new AdminFragment();
+        addFragment(mFragment);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -110,7 +105,6 @@ public class MainDrawerActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_statistics) {
 
-
         }
 
         //ADD FRAGMENT TO MAINACTIVITY
@@ -155,7 +149,7 @@ public class MainDrawerActivity extends AppCompatActivity
         Cursor cursor = getContentResolver().query(DatabaseHelper.LOGIN_CONTENT_URI, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0){
-            getContentResolver().delete(DatabaseHelper.TOKEN_CONTENT_URI, null, null);
+            getContentResolver().delete(DatabaseHelper.LOGIN_CONTENT_URI, null, null);
             cursor.close();
         }
     }
@@ -181,6 +175,10 @@ public class MainDrawerActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
         if (newFragment instanceof ProfileFragment){
+            fragmentTransaction.replace(R.id.fragment_main, newFragment).commitAllowingStateLoss();
+        }
+
+        if (newFragment instanceof AdminFragment){
             fragmentTransaction.replace(R.id.fragment_main, newFragment).commitAllowingStateLoss();
         }
     }

@@ -38,4 +38,63 @@
     <string name="profile_staff">Staff:</string>
     <string name="profile_superuser">Superuser:</string>
 
+    <!-- Admin Strings -->
+    <string name="admin_search">Search:</string>
+    <string name="admin_gender">Gender</string>
+    <string name="admin_position">Position</string>
+    <string name="admin_race">Race</string>
+    <string name="admin_start_date">Start date</string>
+    <string name="admin_user">User:</string>
+    <string name="admin_email">Email contains:</string>
+    <string name="admin_query">Query Database</string>
+
+    <string-array name="race_array">
+        <item>Race</item>
+        <item>Black African</item>
+        <item>White</item>
+        <item>Coloured</item>
+        <item>Indian or Asian</item>
+        <item>None Dominant</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Gender</item>
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+
+    <string-array name="position_array">
+        <item>Position</item>
+        <item>Front-end Developer</item>
+        <item>Back-end Developer</item>
+        <item>Project Manager</item>
+    </string-array>
+
+    <string-array name="birth_date_array">
+        <item>Birth Date</item>
+        <item>Today</item>
+        <item>Past 7 Days</item>
+        <item>This Month</item>
+        <item>This Year</item>
+        <item>Yesterday</item>
+    </string-array>
+
+    <string-array name="start_date_array">
+        <item>Start Date</item>
+        <item>Today</item>
+        <item>Past 7 Days</item>
+        <item>This Month</item>
+        <item>This Year</item>
+        <item>Yesterday</item>
+    </string-array>
+
+    <!-- Employee row strings -->
+    <string name="emp_id">Id</string>
+    <string name="emp_fname">First name</string>
+    <string name="emp_lname">Last name</string>
+    <string name="emp_position">Position</string>
+    <string name="emp_email">Email</string>
+    <string name="emp_age">Age</string>
+
+
 </resources>

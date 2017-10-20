@@ -1,0 +1,226 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tangent.assessment.tangentboard.fragment.AdminFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/app_margin_left_right"
+            android:layout_marginStart="@dimen/app_margin_left_right"
+            android:layout_marginTop="@dimen/scroll_view_margin_top"
+            android:layoutDirection="ltr"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/app_padding_bottom"
+            android:paddingTop="@dimen/app_padding_top">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@android:color/transparent"
+                    android:paddingStart="5dp"
+                    android:text="@string/admin_search"
+                    android:textColor="#232424"
+                    android:textColorHint="#858585"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/app_padding_bottom"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/admin_race"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:prompt="@string/admin_race"
+                        android:textColor="#232424"
+                        android:textSize="15sp" />
+
+                    <Spinner
+                        android:id="@+id/admin_position"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#232424"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/app_padding_bottom"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/admin_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#232424"
+                        android:textSize="15sp" />
+
+                    <Spinner
+                        android:id="@+id/admin_birthdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#232424"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/admin_start_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="viewStart"
+                        android:textColor="#232424"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@android:color/transparent"
+                        android:gravity="top"
+                        android:paddingStart="5dp"
+                        android:text="@string/admin_user"
+                        android:textColor="#232424"
+                        android:textColorHint="#858585"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/admin_user"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/app_margin_start"
+                        android:layout_weight="0"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@android:color/transparent"
+                        android:gravity="top"
+                        android:paddingStart="5dp"
+                        android:text="@string/admin_email"
+                        android:textColor="#232424"
+                        android:textColorHint="#858585"
+                        android:textSize="15sp" />
+
+                    <EditText
+                        android:id="@+id/admin_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/app_margin_start"
+                        android:layout_weight="0"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="ltr"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/admin_query"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/buttonbackground"
+                    android:text="@string/admin_query"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/admin_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/scroll_view_margin_top" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
