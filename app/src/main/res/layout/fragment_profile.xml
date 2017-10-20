@@ -396,17 +396,22 @@
             android:paddingBottom="@dimen/app_padding_bottom"
             android:paddingTop="@dimen/app_padding_top">
 
-            <Button
-                android:id="@+id/profile_position"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/buttonbackground"
+                android:layout_gravity="center"
+                android:paddingStart="5dp"
+                android:background="@drawable/textbackground"
                 android:text="@string/profile_position"
-                android:textStyle="bold" />
+                android:textColor="#232424"
+                android:textColorHint="#858585"
+                android:textSize="15sp"
+                android:layout_marginBottom="@dimen/fab_margin"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_position"/>
 
         </LinearLayout>
 
@@ -418,17 +423,22 @@
                 android:paddingBottom="@dimen/app_padding_bottom"
                 android:paddingTop="@dimen/app_padding_top">
 
-                <Button
-                    android:id="@+id/profile_next_of_kin"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/buttonbackground"
+                    android:layout_gravity="center"
+                    android:paddingStart="5dp"
+                    android:background="@drawable/textbackground"
                     android:text="@string/profile_next_of_kin"
-                    android:textStyle="bold" />
+                    android:textColor="#232424"
+                    android:textColorHint="#858585"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="@dimen/fab_margin"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_next_of_kin"/>
 
             </LinearLayout>
 
@@ -440,17 +450,22 @@
                 android:paddingBottom="@dimen/app_padding_bottom"
                 android:paddingTop="@dimen/app_padding_top">
 
-                <Button
-                    android:id="@+id/profile_emp_review"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/buttonbackground"
+                    android:layout_gravity="center"
+                    android:paddingStart="5dp"
+                    android:background="@drawable/textbackground"
                     android:text="@string/profile_emp_review"
-                    android:textStyle="bold" />
+                    android:textColor="#232424"
+                    android:textColorHint="#858585"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="@dimen/fab_margin"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_emp_review"/>
 
             </LinearLayout>
 

@@ -132,4 +132,26 @@
     <string name="stats_no_of_back_end">Number of Back End Developers:</string>
     <string name="stats_no_of_birthdays">Number of birthdays this month:</string>
 
+    <!--position strings -->
+    <string name="pos_id">Id:</string>
+    <string name="pos_name">Name:</string>
+    <string name="pos_level">Level:</string>
+    <string name="pos_sort">Sort:</string>
+
+    <!--next of kin strings -->
+    <string name="nok_id">Id:</string>
+    <string name="nok_name">Name:</string>
+    <string name="nok_relationship">Relationship:</string>
+    <string name="nok_p_number">Phone number:</string>
+    <string name="nok_email">Email:</string>
+    <string name="nok_p_address">Physical address</string>
+    <string name="nok_employee">Employee:</string>
+
+    <!-- employee review strings -->
+    <string name="employee_id">Id:</string>
+    <string name="employee_date">Date:</string>
+    <string name="employee_salary">Salary:</string>
+    <string name="employee_type">Type:</string>
+
+
 </resources>

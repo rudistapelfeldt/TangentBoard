@@ -1,6 +1,7 @@
 package com.tangent.assessment.tangentboard.apiservice;
 
 import com.tangent.assessment.tangentboard.model.LoginData;
+import com.tangent.assessment.tangentboard.model.MyEmployeeData;
 import com.tangent.assessment.tangentboard.model.StatisticsData;
 import com.tangent.assessment.tangentboard.model.UserData;
 
@@ -33,6 +34,10 @@ public interface ApiService {
     @Headers({"Content-Type: application/x-www-form-urlencoded"})
     @GET(Request.EMPLOYEE_DETAIL)
     Observable<List<StatisticsData>> getEmployees();
+
+    @Headers({"Content-Type: application/x-www-form-urlencoded"})
+    @GET(Request.USER_EMPLOYEE_PROFILE)
+    Observable<MyEmployeeData> getEmployeesMe();
 
     @Headers({"Content-Type: application/x-www-form-urlencoded"})
     @GET(Request.EMPLOYEE_DETAIL)

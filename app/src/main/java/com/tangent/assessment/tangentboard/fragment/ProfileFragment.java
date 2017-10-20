@@ -5,15 +5,31 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.tangent.assessment.tangentboard.R;
+import com.tangent.assessment.tangentboard.adapter.EmpReviewRecyclerView;
+import com.tangent.assessment.tangentboard.adapter.NextOfKinRecyclerView;
+import com.tangent.assessment.tangentboard.adapter.PositionRecyclerView;
+import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
 import com.tangent.assessment.tangentboard.database.DatabaseHelper;
+import com.tangent.assessment.tangentboard.model.EmployeeNextOfKin;
+import com.tangent.assessment.tangentboard.model.EmployeeReview;
+import com.tangent.assessment.tangentboard.model.MyEmployeeData;
+import com.tangent.assessment.tangentboard.model.Position;
+
+import java.util.ArrayList;
+
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +41,7 @@ import com.tangent.assessment.tangentboard.database.DatabaseHelper;
  */
 public class ProfileFragment extends Fragment {
 
+
     private static final String TAG = ProfileFragment.class.getSimpleName();
 
     private TextView mId, mFirstName, mLastName, mEmail, mUsername, mActive, mStaff, mSuperuser;
@@ -35,9 +52,21 @@ public class ProfileFragment extends Fragment {
 
     private TextView mGender, mRace, mYearsWorked, mAge, mNextReview, mDaysToBd, mLeaveRemaining;
 
-    private Button mPosition, mNextOfKin, mEmpReview;
+    private RecyclerView mPosition, mNextOfKin, mEmpReview;
 
     private View mView;
+
+    private ArrayList<Position> mPositionList = new ArrayList<>();
+
+    private ArrayList<EmployeeNextOfKin> mNOKList = new ArrayList<>();
+
+    private ArrayList<EmployeeReview> mEmpReviewList = new ArrayList<>();
+
+    private NextOfKinRecyclerView mNokAdapter;
+
+    private PositionRecyclerView mPositionAdapter;
+
+    private EmpReviewRecyclerView mEmpReviewAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -119,7 +148,13 @@ public class ProfileFragment extends Fragment {
             mNextReview = (TextView)mView.findViewById(R.id.profile_next_review);
             mLeaveRemaining = (TextView)mView.findViewById(R.id.profile_leave_remaining);
 
-
+            //RECYCLERVIEW REFERENCES
+            mPosition = (RecyclerView) mView.findViewById(R.id.profile_position);
+            mPosition.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mNextOfKin = (RecyclerView) mView.findViewById(R.id.profile_next_of_kin);
+            mNextOfKin.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mEmpReview = (RecyclerView) mView.findViewById(R.id.profile_emp_review);
+            mEmpReview.setLayoutManager(new LinearLayoutManager(getActivity()));
 
             //FILL FIELDS
             fillFields();
@@ -202,5 +237,38 @@ public class ProfileFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    protected void getMyEmployeeData(){
+
+        Observable<MyEmployeeData> observable = RetrofitClient.getInstance(getActivity(), true).getApiService().getEmployeesMe();
+        observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<MyEmployeeData>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(MyEmployeeData myEmployeeData) {
+                        mPositionList.add(myEmployeeData.getmPosition());
+                        mEmpReviewList.addAll(myEmployeeData.getmEmployeeReview());
+                        mNOKList.addAll(myEmployeeData.getmEmployeeNextOfKinList());
+
+
+                        mNokAdapter = new NextOfKinRecyclerView(getActivity(), mNOKList);
+                        mNextOfKin.setAdapter(mNokAdapter);
+
+                        mPositionAdapter = new PositionRecyclerView(getActivity(), mPositionList);
+                        mPosition.setAdapter(mPositionAdapter);
+
+                        mEmpReviewAdapter = new EmpReviewRecyclerView(getActivity(), mEmpReviewList);
+                    }
+                });
     }
 }
