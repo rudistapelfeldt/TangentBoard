@@ -401,11 +401,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:paddingStart="5dp"
-                android:background="@drawable/textbackground"
                 android:text="@string/profile_position"
                 android:textColor="#232424"
                 android:textColorHint="#858585"
-                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textSize="20sp"
                 android:layout_marginBottom="@dimen/fab_margin"/>
 
             <android.support.v7.widget.RecyclerView
@@ -428,11 +428,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingStart="5dp"
-                    android:background="@drawable/textbackground"
                     android:text="@string/profile_next_of_kin"
                     android:textColor="#232424"
                     android:textColorHint="#858585"
-                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
                     android:layout_marginBottom="@dimen/fab_margin"/>
 
                 <android.support.v7.widget.RecyclerView
@@ -455,11 +455,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingStart="5dp"
-                    android:background="@drawable/textbackground"
                     android:text="@string/profile_emp_review"
                     android:textColor="#232424"
                     android:textColorHint="#858585"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     android:layout_marginBottom="@dimen/fab_margin"/>
 
                 <android.support.v7.widget.RecyclerView

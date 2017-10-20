@@ -10,6 +10,9 @@ import java.util.ArrayList;
 
 public class MyEmployeeData {
 
+    @SerializedName("id")
+    private int mId;
+
     @SerializedName("user")
     private User mUser;
 
@@ -87,6 +90,14 @@ public class MyEmployeeData {
 
 
     public MyEmployeeData() {
+    }
+
+    public int getmId() {
+        return mId;
+    }
+
+    public void setmId(int mId) {
+        this.mId = mId;
     }
 
     public User getmUser() {
