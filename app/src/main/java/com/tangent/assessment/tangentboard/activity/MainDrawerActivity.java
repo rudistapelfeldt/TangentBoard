@@ -21,6 +21,7 @@ import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
 import com.tangent.assessment.tangentboard.database.DatabaseHelper;
 import com.tangent.assessment.tangentboard.fragment.AdminFragment;
 import com.tangent.assessment.tangentboard.fragment.ProfileFragment;
+import com.tangent.assessment.tangentboard.fragment.StatisticsFragment;
 import com.tangent.assessment.tangentboard.model.UserData;
 
 import rx.Observable;
@@ -31,7 +32,8 @@ import rx.schedulers.Schedulers;
 public class MainDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                     ProfileFragment.OnFragmentInteractionListener,
-                    AdminFragment.OnFragmentInteractionListener{
+                    AdminFragment.OnFragmentInteractionListener,
+                    StatisticsFragment.OnFragmentInteractionListener{
 
     private static final String TAG = MainDrawerActivity.class.getSimpleName();
 
@@ -105,6 +107,12 @@ public class MainDrawerActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_statistics) {
 
+            mFragment = new StatisticsFragment();
+
+        } else if (id == R.id.nav_home){
+
+            mFragment = new AdminFragment();
+
         }
 
         //ADD FRAGMENT TO MAINACTIVITY
@@ -174,13 +182,8 @@ public class MainDrawerActivity extends AppCompatActivity
     protected void addFragment(Fragment newFragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-        if (newFragment instanceof ProfileFragment){
-            fragmentTransaction.replace(R.id.fragment_main, newFragment).commitAllowingStateLoss();
-        }
+        fragmentTransaction.replace(R.id.fragment_main, newFragment).commitAllowingStateLoss();
 
-        if (newFragment instanceof AdminFragment){
-            fragmentTransaction.replace(R.id.fragment_main, newFragment).commitAllowingStateLoss();
-        }
     }
 
     @Override

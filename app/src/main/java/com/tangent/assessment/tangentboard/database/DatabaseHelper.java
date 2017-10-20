@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String CONTENT_AUTHORITY = "com.tangent.assessment.tangentboard";
 
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 6;
 
     public static final String CONTENT_KEY = "content";
 

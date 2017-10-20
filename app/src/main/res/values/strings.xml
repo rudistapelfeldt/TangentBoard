@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TangentBoard</string>
+    <string name="app_name">Tangent Board</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -21,6 +21,7 @@
     <!--Drawer menu strings -->
     <string name="menu_profile">Profile</string>
     <string name="menu_statistics">Statistics</string>
+    <string name="menu_home">Home</string>
 
     <!-- ProgressDialog String -->
     <string name="progress_login">Logging in...</string>
@@ -37,7 +38,32 @@
     <string name="profile_active">Active:</string>
     <string name="profile_staff">Staff:</string>
     <string name="profile_superuser">Superuser:</string>
-
+    <string name="profile_emp_info">Employment Information:</string>
+    <string name="profile_emp_position">Position:</string>
+    <string name="profile_emp_level">Level:</string>
+    <string name="profile_position">Position</string>
+    <string name="profile_next_of_kin">Next of kin</string>
+    <string name="profile_emp_review">Employee review</string>
+    <string name="profile_id_number">ID number:</string>
+    <string name="profile_phone_number">Phone number:</string>
+    <string name="profile_p_address">Physical address:</string>
+    <string name="profile_tax_number">Tax number:</string>
+    <string name="profile_p_email">Personal email:</string>
+    <string name="profile_github">Github user:</string>
+    <string name="profile_birth_date">Birth date:</string>
+    <string name="profile_start_date">Start date:</string>
+    <string name="profile_end_date">End date:</string>
+    <string name="profile_id_document">ID document:</string>
+    <string name="profile_visa">Visa document:</string>
+    <string name="profile_is_employed">Is employed:</string>
+    <string name="profile_is_foreigner">Tax foreigner:</string>
+    <string name="profile_gender">Gender:</string>
+    <string name="profile_race">Race:</string>
+    <string name="profile_years_worked">Years worked:</string>
+    <string name="profile_age">Age:</string>
+    <string name="profile_next_review">Next review:</string>
+    <string name="profile_d_to_bd">Days to birthday:</string>
+    <string name="profile_leave_remaining">Leave remaining:</string>
     <!-- Admin Strings -->
     <string name="admin_search">Search:</string>
     <string name="admin_gender">Gender</string>
@@ -95,6 +121,37 @@
     <string name="emp_position">Position</string>
     <string name="emp_email">Email</string>
     <string name="emp_age">Age</string>
+
+    <!--statistics strings -->
+    <string name="stats_no_of_emp">Number of employees:</string>
+    <string name="stats_no_of_active">Number of active users:</string>
+    <string name="stats_no_of_male_emp">Number of male employees:</string>
+    <string name="stats_no_of_female_emp">Number of female employees:</string>
+    <string name="stats_no_of_project_managers">Number of Project Managers:</string>
+    <string name="stats_no_of_front_end">Number of Front End Developers:</string>
+    <string name="stats_no_of_back_end">Number of Back End Developers:</string>
+    <string name="stats_no_of_birthdays">Number of birthdays this month:</string>
+
+    <!--position strings -->
+    <string name="pos_id">Id:</string>
+    <string name="pos_name">Name:</string>
+    <string name="pos_level">Level:</string>
+    <string name="pos_sort">Sort:</string>
+
+    <!--next of kin strings -->
+    <string name="nok_id">Id:</string>
+    <string name="nok_name">Name:</string>
+    <string name="nok_relationship">Relationship:</string>
+    <string name="nok_p_number">Phone number:</string>
+    <string name="nok_email">Email:</string>
+    <string name="nok_p_address">Physical address</string>
+    <string name="nok_employee">Employee:</string>
+
+    <!-- employee review strings -->
+    <string name="employee_id">Id:</string>
+    <string name="employee_date">Date:</string>
+    <string name="employee_salary">Salary:</string>
+    <string name="employee_type">Type:</string>
 
 
 </resources>

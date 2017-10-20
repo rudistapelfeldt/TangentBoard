@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tangent.assessment.tangentboard.R;
+import com.tangent.assessment.tangentboard.adapter.EmpReviewRecyclerView;
+import com.tangent.assessment.tangentboard.adapter.NextOfKinRecyclerView;
+import com.tangent.assessment.tangentboard.adapter.PositionRecyclerView;
+import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
 import com.tangent.assessment.tangentboard.database.DatabaseHelper;
+import com.tangent.assessment.tangentboard.model.EmployeeNextOfKin;
+import com.tangent.assessment.tangentboard.model.EmployeeReview;
+import com.tangent.assessment.tangentboard.model.MyEmployeeData;
+import com.tangent.assessment.tangentboard.model.Position;
+
+import java.util.ArrayList;
+
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,11 +41,32 @@ import com.tangent.assessment.tangentboard.database.DatabaseHelper;
  */
 public class ProfileFragment extends Fragment {
 
+
     private static final String TAG = ProfileFragment.class.getSimpleName();
 
     private TextView mId, mFirstName, mLastName, mEmail, mUsername, mActive, mStaff, mSuperuser;
 
+    private TextView mIdNumber, mPhoneNumber, mPAddress, mTaxNumber, mWEmail, mPEmail, mGithub;
+
+    private TextView mBirthDate, mStartDate, mEndDate, mIdDoc, mVisaDoc, mIsEmployed, mIsForeigner;
+
+    private TextView mGender, mRace, mYearsWorked, mAge, mNextReview, mDaysToBd, mLeaveRemaining;
+
+    private RecyclerView mPosition, mNextOfKin, mEmpReview;
+
     private View mView;
+
+    private ArrayList<Position> mPositionList = new ArrayList<>();
+
+    private ArrayList<EmployeeNextOfKin> mNOKList = new ArrayList<>();
+
+    private ArrayList<EmployeeReview> mEmpReviewList = new ArrayList<>();
+
+    private NextOfKinRecyclerView mNokAdapter;
+
+    private PositionRecyclerView mPositionAdapter;
+
+    private EmpReviewRecyclerView mEmpReviewAdapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,9 +126,41 @@ public class ProfileFragment extends Fragment {
             mActive = (TextView)mView.findViewById(R.id.profile_active);
             mStaff = (TextView)mView.findViewById(R.id.profile_staff);
             mSuperuser = (TextView)mView.findViewById(R.id.profile_superuser);
+            mIdNumber = (TextView)mView.findViewById(R.id.profile_id_number);
+            mPhoneNumber = (TextView)mView.findViewById(R.id.profile_phone);
+            mPAddress = (TextView)mView.findViewById(R.id.profile_p_address);
+            mTaxNumber = (TextView)mView.findViewById(R.id.profile_tax_number);
+            mWEmail = (TextView)mView.findViewById(R.id.profile_wemail);
+            mPEmail = (TextView)mView.findViewById(R.id.profile_p_email);
+            mGithub = (TextView)mView.findViewById(R.id.profile_github);
+            mBirthDate = (TextView)mView.findViewById(R.id.profile_birth_date);
+            mStartDate = (TextView)mView.findViewById(R.id.profile_start_date);
+            mEndDate = (TextView)mView.findViewById(R.id.profile_end_date);
+            mIdDoc = (TextView)mView.findViewById(R.id.profile_id_doc);
+            mVisaDoc = (TextView)mView.findViewById(R.id.profile_visa_doc);
+            mIsEmployed = (TextView)mView.findViewById(R.id.profile_is_emp);
+            mIsForeigner = (TextView)mView.findViewById(R.id.profile_is_foreigner);
+            mGender = (TextView)mView.findViewById(R.id.profile_gender);
+            mRace = (TextView)mView.findViewById(R.id.profile_race);
+            mYearsWorked = (TextView)mView.findViewById(R.id.profile_years_worked);
+            mDaysToBd = (TextView)mView.findViewById(R.id.profile_d_to_bd);
+            mAge = (TextView)mView.findViewById(R.id.profile_age);
+            mNextReview = (TextView)mView.findViewById(R.id.profile_next_review);
+            mLeaveRemaining = (TextView)mView.findViewById(R.id.profile_leave_remaining);
+
+            //RECYCLERVIEW REFERENCES
+            mPosition = (RecyclerView) mView.findViewById(R.id.profile_position);
+            mPosition.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mNextOfKin = (RecyclerView) mView.findViewById(R.id.profile_next_of_kin);
+            mNextOfKin.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mEmpReview = (RecyclerView) mView.findViewById(R.id.profile_emp_review);
+            mEmpReview.setLayoutManager(new LinearLayoutManager(getActivity()));
 
             //FILL FIELDS
             fillFields();
+
+            //GET FULL USER EMPLOYEE PROFILE
+            getMyEmployeeData();
         }
         return mView;
     }
@@ -170,5 +240,63 @@ public class ProfileFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    protected void getMyEmployeeData(){
+
+        Observable<MyEmployeeData> observable = RetrofitClient.getInstance(getActivity(), true).getApiService().getEmployeesMe();
+        observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<MyEmployeeData>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(MyEmployeeData myEmployeeData) {
+                        mPositionList.add(myEmployeeData.getmPosition());
+                        mEmpReviewList.addAll(myEmployeeData.getmEmployeeReview());
+                        mNOKList.addAll(myEmployeeData.getmEmployeeNextOfKinList());
+
+
+                        mNokAdapter = new NextOfKinRecyclerView(getActivity(), mNOKList);
+                        mNextOfKin.setAdapter(mNokAdapter);
+
+                        mPositionAdapter = new PositionRecyclerView(getActivity(), mPositionList);
+                        mPosition.setAdapter(mPositionAdapter);
+
+                        mEmpReviewAdapter = new EmpReviewRecyclerView(getActivity(), mEmpReviewList);
+                        mEmpReview.setAdapter(mEmpReviewAdapter);
+
+                        //SET TEXTVIEW TEXTS
+                        mIdNumber.setText(String.valueOf(myEmployeeData.getmIdNumber()));
+                        mPhoneNumber.setText(myEmployeeData.getmPhoneNumber());
+                        mIdNumber.setText(myEmployeeData.getmIdNumber());
+                        mPAddress.setText(myEmployeeData.getmPhysicalAddress());
+                        mTaxNumber.setText(myEmployeeData.getmTaxNumber());
+                        mWEmail.setText(myEmployeeData.getmEmail());
+                        mPEmail.setText(myEmployeeData.getmPersonalEmail());
+                        mGithub.setText(myEmployeeData.getmGitHubUser());
+                        mBirthDate.setText(myEmployeeData.getmBirthDate());
+                        mStartDate.setText(myEmployeeData.getmStartDate());
+                        mEndDate.setText(myEmployeeData.getmEndDate());
+                        mIdDoc.setText(myEmployeeData.getmIdDocument());
+                        mVisaDoc.setText(myEmployeeData.getmVisaDocument());
+                        mIsEmployed.setText(String.valueOf(myEmployeeData.ismIsEmployed()));
+                        mIsForeigner.setText(String.valueOf(myEmployeeData.ismIsForeigner()));
+                        mGender.setText(myEmployeeData.getmGender());
+                        mRace.setText(myEmployeeData.getmRace());
+                        mYearsWorked.setText(String.valueOf(myEmployeeData.getmYearsWorked()));
+                        mAge.setText(String.valueOf(myEmployeeData.getmAge()));
+                        mNextReview.setText(myEmployeeData.getmNextReview());
+                        mDaysToBd.setText(String.valueOf(myEmployeeData.getmDaysToBirthday()));
+                        mLeaveRemaining.setText(myEmployeeData.getmLeaveRemaining());
+                    }
+                });
     }
 }
