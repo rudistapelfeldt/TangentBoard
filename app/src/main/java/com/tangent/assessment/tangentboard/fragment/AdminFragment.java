@@ -35,14 +35,14 @@ import rx.schedulers.Schedulers;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link StatisticsFragment.OnFragmentInteractionListener} interface
+ * {@link AdminFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link StatisticsFragment#newInstance} factory method to
+ * Use the {@link AdminFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StatisticsFragment extends Fragment implements AdapterView.OnItemClickListener{
+public class AdminFragment extends Fragment implements AdapterView.OnItemClickListener{
 
-    private static final String TAG = StatisticsFragment.class.getSimpleName();
+    private static final String TAG = AdminFragment.class.getSimpleName();
 
     private RecyclerView mRecyclerView;
 
@@ -71,7 +71,7 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
 
     private OnFragmentInteractionListener mListener;
 
-    public StatisticsFragment() {
+    public AdminFragment() {
         // Required empty public constructor
     }
 
@@ -81,11 +81,11 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment StatisticsFragment.
+     * @return A new instance of fragment AdminFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static StatisticsFragment newInstance(String param1, String param2) {
-        StatisticsFragment fragment = new StatisticsFragment();
+    public static AdminFragment newInstance(String param1, String param2) {
+        AdminFragment fragment = new AdminFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -107,18 +107,18 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if (mView == null){
-            mView = inflater.inflate(R.layout.fragment_statistics, container, false);
+            mView = inflater.inflate(R.layout.fragment_admin, container, false);
 
             //RECYCLERVIEW REFERENCE
-            mRecyclerView = (RecyclerView)mView.findViewById(R.id.stats_rv);
+            mRecyclerView = (RecyclerView)mView.findViewById(R.id.admin_rv);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
             //EDITTEXT REFERENCES
-            mEmailContains = (EditText)mView.findViewById(R.id.stats_email);
-            mUser = (EditText)mView.findViewById(R.id.stats_user);
+            mEmailContains = (EditText)mView.findViewById(R.id.admin_email);
+            mUser = (EditText)mView.findViewById(R.id.admin_user);
 
             //BUTTON REFERENCE
-            mQuery = (Button)mView.findViewById(R.id.stats_query);
+            mQuery = (Button)mView.findViewById(R.id.admin_query);
 
             //SET BUTTON ONCLICKLISTENER
             mQuery.setOnClickListener(new View.OnClickListener() {
@@ -130,11 +130,11 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
             });
 
             //SPINNER REFERENCES
-            mGender = (Spinner)mView.findViewById(R.id.stats_gender);
-            mPosition = (Spinner)mView.findViewById(R.id.stats_position);
-            mBirthDate = (Spinner)mView.findViewById(R.id.stats_birthdate);
-            mStartDate = (Spinner)mView.findViewById(R.id.stats_start_date);
-            mRace = (Spinner)mView.findViewById(R.id.stats_race);
+            mGender = (Spinner)mView.findViewById(R.id.admin_gender);
+            mPosition = (Spinner)mView.findViewById(R.id.admin_position);
+            mBirthDate = (Spinner)mView.findViewById(R.id.admin_birthdate);
+            mStartDate = (Spinner)mView.findViewById(R.id.admin_start_date);
+            mRace = (Spinner)mView.findViewById(R.id.admin_race);
 
             //ARRAYADAPTER REFERENCES
             mGenderArray = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.gender_array));
@@ -190,19 +190,19 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
         int id = view.getId();
 
         switch(id){
-            case R.id.stats_gender:
+            case R.id.admin_gender:
 
                 break;
-            case R.id.stats_position:
+            case R.id.admin_position:
 
                 break;
-            case R.id.stats_race:
+            case R.id.admin_race:
 
                 break;
-            case R.id.stats_birthdate:
+            case R.id.admin_birthdate:
 
                 break;
-            case R.id.stats_start_date:
+            case R.id.admin_start_date:
 
                 break;
         }
@@ -326,7 +326,7 @@ public class StatisticsFragment extends Fragment implements AdapterView.OnItemCl
         }
 
         if (!mEmailContains.getText().toString().isEmpty()){
-            map.put("email_contains", mEmailContains.getText().toString());
+            map.put("email__contains", mEmailContains.getText().toString().toLowerCase());
         }
 
         if (!mUser.getText().toString().isEmpty()){

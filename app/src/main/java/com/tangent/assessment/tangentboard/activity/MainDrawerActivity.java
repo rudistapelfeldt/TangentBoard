@@ -4,9 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -17,13 +15,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.tangent.assessment.tangentboard.R;
 import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
 import com.tangent.assessment.tangentboard.database.DatabaseHelper;
+import com.tangent.assessment.tangentboard.fragment.AdminFragment;
 import com.tangent.assessment.tangentboard.fragment.ProfileFragment;
-import com.tangent.assessment.tangentboard.fragment.StatisticsFragment;
 import com.tangent.assessment.tangentboard.model.UserData;
 
 import rx.Observable;
@@ -34,7 +31,7 @@ import rx.schedulers.Schedulers;
 public class MainDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                     ProfileFragment.OnFragmentInteractionListener,
-                    StatisticsFragment.OnFragmentInteractionListener{
+                    AdminFragment.OnFragmentInteractionListener{
 
     private static final String TAG = MainDrawerActivity.class.getSimpleName();
 
@@ -47,16 +44,12 @@ public class MainDrawerActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //GET LOGGED IN USER'S DETAILS AND SAVE TO SQLITE DATABASE
         getMyDetails();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        //LOAD ADMINFRAGMENT AS HOME SCREEN
+        mFragment = new AdminFragment();
+        addFragment(mFragment);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -111,8 +104,6 @@ public class MainDrawerActivity extends AppCompatActivity
             mFragment = new ProfileFragment();
 
         } else if (id == R.id.nav_statistics) {
-
-            mFragment = new StatisticsFragment();
 
         }
 
@@ -187,7 +178,7 @@ public class MainDrawerActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_main, newFragment).commitAllowingStateLoss();
         }
 
-        if (newFragment instanceof StatisticsFragment){
+        if (newFragment instanceof AdminFragment){
             fragmentTransaction.replace(R.id.fragment_main, newFragment).commitAllowingStateLoss();
         }
     }

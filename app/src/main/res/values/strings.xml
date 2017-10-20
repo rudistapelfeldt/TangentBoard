@@ -38,15 +38,15 @@
     <string name="profile_staff">Staff:</string>
     <string name="profile_superuser">Superuser:</string>
 
-    <!-- Statistics Strings -->
-    <string name="stats_search">Search:</string>
-    <string name="stats_gender">Gender</string>
-    <string name="stats_position">Position</string>
-    <string name="stats_race">Race</string>
-    <string name="stats_start_date">Start date</string>
-    <string name="stats_user">User:</string>
-    <string name="stats_email">Email contains:</string>
-    <string name="stats_query">Query Database</string>
+    <!-- Admin Strings -->
+    <string name="admin_search">Search:</string>
+    <string name="admin_gender">Gender</string>
+    <string name="admin_position">Position</string>
+    <string name="admin_race">Race</string>
+    <string name="admin_start_date">Start date</string>
+    <string name="admin_user">User:</string>
+    <string name="admin_email">Email contains:</string>
+    <string name="admin_query">Query Database</string>
 
     <string-array name="race_array">
         <item>Race</item>
@@ -87,6 +87,7 @@
         <item>This Year</item>
         <item>Yesterday</item>
     </string-array>
+
     <!-- Employee row strings -->
     <string name="emp_id">Id</string>
     <string name="emp_fname">First name</string>
