@@ -158,6 +158,9 @@ public class ProfileFragment extends Fragment {
 
             //FILL FIELDS
             fillFields();
+
+            //GET FULL USER EMPLOYEE PROFILE
+            getMyEmployeeData();
         }
         return mView;
     }
