@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.tangent.assessment.tangentboard.R;
@@ -27,6 +28,14 @@ public class ProfileFragment extends Fragment {
     private static final String TAG = ProfileFragment.class.getSimpleName();
 
     private TextView mId, mFirstName, mLastName, mEmail, mUsername, mActive, mStaff, mSuperuser;
+
+    private TextView mIdNumber, mPhoneNumber, mPAddress, mTaxNumber, mWEmail, mPEmail, mGithub;
+
+    private TextView mBirthDate, mStartDate, mEndDate, mIdDoc, mVisaDoc, mIsEmployed, mIsForeigner;
+
+    private TextView mGender, mRace, mYearsWorked, mAge, mNextReview, mDaysToBd, mLeaveRemaining;
+
+    private Button mPosition, mNextOfKin, mEmpReview;
 
     private View mView;
 
@@ -88,6 +97,29 @@ public class ProfileFragment extends Fragment {
             mActive = (TextView)mView.findViewById(R.id.profile_active);
             mStaff = (TextView)mView.findViewById(R.id.profile_staff);
             mSuperuser = (TextView)mView.findViewById(R.id.profile_superuser);
+            mIdNumber = (TextView)mView.findViewById(R.id.profile_id_number);
+            mPhoneNumber = (TextView)mView.findViewById(R.id.profile_phone);
+            mPAddress = (TextView)mView.findViewById(R.id.profile_p_address);
+            mTaxNumber = (TextView)mView.findViewById(R.id.profile_tax_number);
+            mWEmail = (TextView)mView.findViewById(R.id.profile_wemail);
+            mPEmail = (TextView)mView.findViewById(R.id.profile_p_email);
+            mGithub = (TextView)mView.findViewById(R.id.profile_github);
+            mBirthDate = (TextView)mView.findViewById(R.id.profile_birth_date);
+            mStartDate = (TextView)mView.findViewById(R.id.profile_start_date);
+            mEndDate = (TextView)mView.findViewById(R.id.profile_end_date);
+            mIdDoc = (TextView)mView.findViewById(R.id.profile_id_doc);
+            mVisaDoc = (TextView)mView.findViewById(R.id.profile_visa_doc);
+            mIsEmployed = (TextView)mView.findViewById(R.id.profile_is_emp);
+            mIsForeigner = (TextView)mView.findViewById(R.id.profile_is_foreigner);
+            mGender = (TextView)mView.findViewById(R.id.profile_gender);
+            mRace = (TextView)mView.findViewById(R.id.profile_race);
+            mYearsWorked = (TextView)mView.findViewById(R.id.profile_years_worked);
+            mDaysToBd = (TextView)mView.findViewById(R.id.profile_d_to_bd);
+            mAge = (TextView)mView.findViewById(R.id.profile_age);
+            mNextReview = (TextView)mView.findViewById(R.id.profile_next_review);
+            mLeaveRemaining = (TextView)mView.findViewById(R.id.profile_leave_remaining);
+
+
 
             //FILL FIELDS
             fillFields();
