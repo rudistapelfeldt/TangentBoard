@@ -40,7 +40,8 @@ public class NextOfKinRecyclerView extends RecyclerView.Adapter<NextOfKinRecycle
     public void onBindViewHolder(NextOfKinViewHolder holder, int position) {
         try{
             holder.mId.setText(String.valueOf(mItems.get(position).getmId()));
-            holder.mEmployee.setText(mItems.get(position).getmEmployee());
+            holder.mName.setText(mItems.get(position).getmName());
+            holder.mEmployee.setText(String.valueOf(mItems.get(position).getmEmployee()));
             holder.mPhysicalAddress.setText(mItems.get(position).getmPhysicalAddress());
             holder.mPhoneNumber.setText(mItems.get(position).getmPhoneNumber());
             holder.mRelationship.setText(mItems.get(position).getmRelationshp());

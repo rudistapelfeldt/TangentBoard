@@ -271,6 +271,7 @@ public class ProfileFragment extends Fragment {
                         mPosition.setAdapter(mPositionAdapter);
 
                         mEmpReviewAdapter = new EmpReviewRecyclerView(getActivity(), mEmpReviewList);
+                        mEmpReview.setAdapter(mEmpReviewAdapter);
 
                         //SET TEXTVIEW TEXTS
                         mIdNumber.setText(String.valueOf(myEmployeeData.getmIdNumber()));
