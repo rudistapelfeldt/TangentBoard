@@ -268,6 +268,30 @@ public class ProfileFragment extends Fragment {
                         mPosition.setAdapter(mPositionAdapter);
 
                         mEmpReviewAdapter = new EmpReviewRecyclerView(getActivity(), mEmpReviewList);
+
+                        //SET TEXTVIEW TEXTS
+                        mIdNumber.setText(String.valueOf(myEmployeeData.getmIdNumber()));
+                        mPhoneNumber.setText(myEmployeeData.getmPhoneNumber());
+                        mIdNumber.setText(myEmployeeData.getmIdNumber());
+                        mPAddress.setText(myEmployeeData.getmPhysicalAddress());
+                        mTaxNumber.setText(myEmployeeData.getmTaxNumber());
+                        mWEmail.setText(myEmployeeData.getmEmail());
+                        mPEmail.setText(myEmployeeData.getmPersonalEmail());
+                        mGithub.setText(myEmployeeData.getmGitHubUser());
+                        mBirthDate.setText(myEmployeeData.getmBirthDate());
+                        mStartDate.setText(myEmployeeData.getmStartDate());
+                        mEndDate.setText(myEmployeeData.getmEndDate());
+                        mIdDoc.setText(myEmployeeData.getmIdDocument());
+                        mVisaDoc.setText(myEmployeeData.getmVisaDocument());
+                        mIsEmployed.setText(String.valueOf(myEmployeeData.ismIsEmployed()));
+                        mIsForeigner.setText(String.valueOf(myEmployeeData.ismIsForeigner()));
+                        mGender.setText(myEmployeeData.getmGender());
+                        mRace.setText(myEmployeeData.getmRace());
+                        mYearsWorked.setText(String.valueOf(myEmployeeData.getmYearsWorked()));
+                        mAge.setText(String.valueOf(myEmployeeData.getmAge()));
+                        mNextReview.setText(myEmployeeData.getmNextReview());
+                        mDaysToBd.setText(String.valueOf(myEmployeeData.getmDaysToBirthday()));
+                        mLeaveRemaining.setText(myEmployeeData.getmLeaveRemaining());
                     }
                 });
     }

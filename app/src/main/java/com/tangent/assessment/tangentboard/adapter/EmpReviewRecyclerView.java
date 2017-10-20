@@ -2,6 +2,7 @@ package com.tangent.assessment.tangentboard.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,14 @@ public class EmpReviewRecyclerView extends RecyclerView.Adapter<EmpReviewRecycle
 
     @Override
     public void onBindViewHolder(EmpReviewViewHolder holder, int position) {
-
+        try{
+            holder.mId.setText(String.valueOf(mItems.get(position).getmId()));
+            holder.mDate.setText(mItems.get(position).getmDate());
+            holder.mSalary.setText(mItems.get(position).getmSalary());
+            holder.mType.setText(mItems.get(position).getmType());
+        }catch(Exception e){
+            Log.e(TAG, e.getMessage());
+        }
     }
 
     @Override

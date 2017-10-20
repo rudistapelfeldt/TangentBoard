@@ -2,6 +2,7 @@ package com.tangent.assessment.tangentboard.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,15 @@ public class NextOfKinRecyclerView extends RecyclerView.Adapter<NextOfKinRecycle
 
     @Override
     public void onBindViewHolder(NextOfKinViewHolder holder, int position) {
-
+        try{
+            holder.mId.setText(String.valueOf(mItems.get(position).getmId()));
+            holder.mEmployee.setText(mItems.get(position).getmEmployee());
+            holder.mPhysicalAddress.setText(mItems.get(position).getmPhysicalAddress());
+            holder.mPhoneNumber.setText(mItems.get(position).getmPhoneNumber());
+            holder.mRelationship.setText(mItems.get(position).getmRelationshp());
+        }catch(Exception e){
+            Log.e(TAG, e.getMessage());
+        }
     }
 
     @Override

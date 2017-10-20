@@ -2,6 +2,7 @@ package com.tangent.assessment.tangentboard.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,15 @@ public class PositionRecyclerView extends RecyclerView.Adapter<PositionRecyclerV
     @Override
     public void onBindViewHolder(PositionViewHolder holder, int position) {
 
+        try{
+            holder.mId.setText(String.valueOf(mItems.get(position).getmId()));
+            holder.mLevel.setText(mItems.get(position).getmLevel());
+            holder.mName.setText(mItems.get(position).getmName());
+            holder.mSort.setText(String.valueOf(mItems.get(position).getmSort()));
+
+        }catch(Exception e){
+            Log.e(TAG, e.getMessage());
+        }
     }
 
     @Override
