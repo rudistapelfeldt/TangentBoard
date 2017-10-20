@@ -96,5 +96,14 @@
     <string name="emp_email">Email</string>
     <string name="emp_age">Age</string>
 
+    <!--statistics strings -->
+    <string name="stats_no_of_emp">Number of employees:</string>
+    <string name="stats_no_of_active">Number of active users:</string>
+    <string name="stats_no_of_male_emp">Number of male employees:</string>
+    <string name="stats_no_of_female_emp">Number of female employees:</string>
+    <string name="stats_no_of_project_managers">Number of Project Managers:</string>
+    <string name="stats_no_of_front_end">Number of Front End Developers:</string>
+    <string name="stats_no_of_back_end">Number of Back End Developers:</string>
+    <string name="stats_no_of_birthdays">Number of birthdays this month:</string>
 
 </resources>
