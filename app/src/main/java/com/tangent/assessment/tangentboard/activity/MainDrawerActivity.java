@@ -15,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.tangent.assessment.tangentboard.R;
 import com.tangent.assessment.tangentboard.apiservice.RetrofitClient;
@@ -39,6 +41,8 @@ public class MainDrawerActivity extends AppCompatActivity
 
     private Fragment mFragment;
 
+    private TextView mName, mEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +64,9 @@ public class MainDrawerActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header = navigationView.getHeaderView(0);
+        mName = (TextView)header.findViewById(R.id.menu_tv_name);
+        mEmail = (TextView)header.findViewById(R.id.menu_tv_email);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -177,6 +184,13 @@ public class MainDrawerActivity extends AppCompatActivity
         values.put(DatabaseHelper.FIRST_NAME, userData.getFirstName());
         getContentResolver().insert(DatabaseHelper.LOGIN_CONTENT_URI, values);
 
+        setDrawerTextViews(userData);
+
+    }
+
+    protected void setDrawerTextViews(UserData userData){
+        mName.setText(userData.getFirstName() + " " + userData.getLastName());
+        mEmail.setText(userData.getEmail());
     }
 
     protected void addFragment(Fragment newFragment){

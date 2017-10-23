@@ -225,6 +225,8 @@ public class AdminFragment extends Fragment implements AdapterView.OnItemClickLi
 
     protected void setEmployeeRecyclerView(){
 
+        mRecyclerView.setVisibility(View.VISIBLE);
+
         Map<String, Object> map = new HashMap<String, Object>();
 
         if(mGender.getSelectedItemPosition() != 0){
